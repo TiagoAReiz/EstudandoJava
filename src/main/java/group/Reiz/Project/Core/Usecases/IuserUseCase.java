@@ -1,11 +1,11 @@
 package group.Reiz.Project.Core.Usecases;
 
-import org.springframework.http.ResponseEntity;
 
+import group.Reiz.Project.Adapters.DTOs.loginDTO;
+import group.Reiz.Project.Adapters.DTOs.loginResponseDTO;
 import group.Reiz.Project.Core.Entities.userEntity;
 
 public interface IuserUseCase {
     public userEntity userCreate(userEntity user);
-    public ResponseEntity<String> userLogin(String email, String password);
-    public userEntity userLogin(userEntity user);
+    public loginResponseDTO userLogin(loginDTO user);
 }

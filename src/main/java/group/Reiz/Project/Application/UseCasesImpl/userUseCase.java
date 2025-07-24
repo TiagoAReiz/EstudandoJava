@@ -5,7 +5,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
 import group.Reiz.Project.Adapters.*;
-
+import group.Reiz.Project.Adapters.DTOs.loginDTO;
+import group.Reiz.Project.Adapters.DTOs.loginResponseDTO;
 import group.Reiz.Project.Core.Entities.userEntity;
 import group.Reiz.Project.Core.Usecases.IuserUseCase;
 
@@ -26,16 +27,16 @@ public class userUseCase implements IuserUseCase {
     }
 
     @Override
-    public ResponseEntity<String> userLogin(String email, String password) {
-        userEntity user = databaseService.getUserByEmail(email);
-        if (user != null && passwordEncoder.checkPassword(password, user.getPassword())) {
-            Long id = user.getId();
-            String token = tokenService.generateToken(id, email);
+    public loginResponseDTO userLogin(loginDTO user) {
+        userEntity userDB = databaseService.getUserByEmail(user.getEmail());
+        if (userDB != null && passwordEncoder.checkPassword(user.getPassword(), userDB.getPassword())) {
+            Long id = userDB.getId();
+            String token = tokenService.generateToken(id, userDB.getEmail());
 
-            return ResponseEntity.ok(token);
-        }else {
-        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Credenciais inválidas");
-    }
+            return new loginResponseDTO(token, "Login successful");
+        } else {
+            return new loginResponseDTO(null, "Invalid credentials");
+        }
     }
 
 }

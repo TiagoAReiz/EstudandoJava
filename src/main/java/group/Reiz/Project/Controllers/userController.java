@@ -3,6 +3,8 @@ package group.Reiz.Project.Controllers;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import group.Reiz.Project.Adapters.DTOs.loginDTO;
+import group.Reiz.Project.Adapters.DTOs.loginResponseDTO;
 import group.Reiz.Project.Core.Entities.userEntity;
 import group.Reiz.Project.Core.Usecases.IuserUseCase;
 
@@ -23,7 +25,7 @@ public class userController {
         return userUseCase.userCreate(user);
     }
     @PostMapping("/login")
-    public userEntity userLogin(@RequestBody userEntity user) {
+    public loginResponseDTO userLogin(@RequestBody loginDTO user) {
         return userUseCase.userLogin(user);
     }
 }
