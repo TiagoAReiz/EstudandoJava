@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import group.Reiz.Project.Adapters.*;
 import group.Reiz.Project.Adapters.DTOs.loginDTO;
+import group.Reiz.Project.Application.UseCasesImpl.Verificadores.userVerify;
 import group.Reiz.Project.Core.Entities.userEntity;
 import group.Reiz.Project.Core.Usecases.IuserUseCase;
 
@@ -18,10 +19,18 @@ public class userUseCase implements IuserUseCase {
     private IpasswordEncoder passwordEncoder;
     @Autowired
     private ItokenService tokenService;
-
+    @Autowired
+    private userVerify userVerify;
+    
     @Override
     public String userCreate(userEntity user)
     {
+        if (!userVerify.isValidEmail(user.getEmail())) {
+            return "Invalid email format";
+        }
+        if (!userVerify.isValidPassword(user.getPassword())) {
+            return "Password must be at least 8 characters long";
+        }
         user.setPassword(passwordEncoder.encodePassword(user.getPassword()));
         databaseService.saveUser(user);
         return "User created successfully";
