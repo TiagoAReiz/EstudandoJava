@@ -15,7 +15,7 @@ import io.jsonwebtoken.SignatureAlgorithm;
 @Service
 public class tokenService implements ItokenService {
 
-    String secretKey = "ELQfEzwve5Houvc3r2Gc64xtOQU2evIjjfGbdzc9G7Y=";
+    
      private byte[] keyBytes = Base64.getDecoder().decode(secretKey);
     private long EXPIRATION_TIME = 1000000;
     @Override
