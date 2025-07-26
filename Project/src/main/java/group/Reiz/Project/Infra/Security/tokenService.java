@@ -15,14 +15,16 @@ import io.jsonwebtoken.SignatureAlgorithm;
 @Service
 public class tokenService implements ItokenService {
 
-    String secretKey = "ELQfEzwve5Houvc3r2Gc64xtOQU2evIjjfGbdzc9G7Y=";
-     private byte[] keyBytes = Base64.getDecoder().decode(secretKey);
+    String secretKey = env.getProperty("SECRET_KEY");
+    private byte[] keyBytes = Base64.getDecoder().decode(secretKey);
     private long EXPIRATION_TIME = 1000000;
     @Override
     public String generateToken(Long id, String email){
         return Jwts.builder()
                 .setSubject(email)
                 .claim("id", id)
+                .claim("role", "USER")
+                .setIssuer("Reiz Project")
                 .setIssuedAt(new Date())
                 .signWith(SignatureAlgorithm.HS256, keyBytes)
                 .setExpiration(new Date(System.currentTimeMillis() + EXPIRATION_TIME))
@@ -51,5 +53,9 @@ public class tokenService implements ItokenService {
     public String getEmailFromToken(String token) {
         return extractClaims(token).getSubject();
     }
+    @Override
+    public String getRoleFromToken(String token) {
+    return extractClaims(token).get("role", String.class);
+}
     
 }

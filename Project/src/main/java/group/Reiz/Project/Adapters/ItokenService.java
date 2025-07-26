@@ -11,4 +11,5 @@ public interface ItokenService  {
     Boolean validateToken(String token);
     Claims extractClaims(String token) throws ExpiredJwtException ;
     public String getEmailFromToken(String token);
+    public String getRoleFromToken(String token);
 }

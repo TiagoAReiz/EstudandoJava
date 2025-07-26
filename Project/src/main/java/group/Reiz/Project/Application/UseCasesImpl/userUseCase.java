@@ -31,7 +31,12 @@ public class userUseCase implements IuserUseCase {
         if (!userVerify.isValidPassword(user.getPassword())) {
             return ResponseEntity.badRequest().body(java.util.Map.of("error", "Password must be at least 8 characters long"));
         }
+        if( databaseService.getUserByEmail(user.getEmail()) != null) {
+            return ResponseEntity.badRequest().body(java.util.Map.of("error", "Email already registered"));
+        }
         user.setPassword(passwordEncoder.encodePassword(user.getPassword()));
+        user.setRole("USER"); 
+        
         databaseService.saveUser(user);
         return ResponseEntity.ok(java.util.Map.of("message", "User created successfully"));
     }
