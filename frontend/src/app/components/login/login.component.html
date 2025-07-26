@@ -1,0 +1,18 @@
+<main>
+  <div class="user-container">
+<div class="container-login">
+      <h1>Login</h1>
+
+      <div class="form-login">
+        <form
+        (ngSubmit)="login(credentials)">
+          <input [(ngModel)]="credentials.email" type="email" id="email" name="email" required placeholder="Email"/>
+
+          <input [(ngModel)]="credentials.password" type="password" id="password" name="password" required placeholder="Senha"/>
+
+          <button type="submit">Enviar</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</main>

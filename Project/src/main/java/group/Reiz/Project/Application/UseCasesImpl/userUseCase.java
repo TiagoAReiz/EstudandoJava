@@ -23,28 +23,29 @@ public class userUseCase implements IuserUseCase {
     private userVerify userVerify;
     
     @Override
-    public String userCreate(userEntity user)
+    public ResponseEntity<?> userCreate(userEntity user)
     {
         if (!userVerify.isValidEmail(user.getEmail())) {
-            return "Invalid email format";
+            return ResponseEntity.badRequest().body(java.util.Map.of("error", "Invalid email format"));
         }
         if (!userVerify.isValidPassword(user.getPassword())) {
-            return "Password must be at least 8 characters long";
+            return ResponseEntity.badRequest().body(java.util.Map.of("error", "Password must be at least 8 characters long"));
         }
         user.setPassword(passwordEncoder.encodePassword(user.getPassword()));
         databaseService.saveUser(user);
-        return "User created successfully";
+        return ResponseEntity.ok(java.util.Map.of("message", "User created successfully"));
     }
 
     @Override
-    public ResponseEntity<String> userLogin(loginDTO user) {
+    public ResponseEntity<?> userLogin(loginDTO user) {
         userEntity userDB = databaseService.getUserByEmail(user.getEmail());
         if (userDB != null && passwordEncoder.checkPassword(user.getPassword(), userDB.getPassword())) {
             Long id = userDB.getId();
             String token = tokenService.generateToken(id, userDB.getEmail());
-            return ResponseEntity.ok(token);
+            // Retorne um JSON com o token
+            return ResponseEntity.ok(java.util.Map.of("token", token));
         }
-        return ResponseEntity.status(401).body("Invalid credentials");
+        return ResponseEntity.status(401).body(java.util.Map.of("error", "Invalid credentials"));
     }
 
 }

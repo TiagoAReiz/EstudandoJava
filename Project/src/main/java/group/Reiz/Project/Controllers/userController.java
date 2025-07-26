@@ -22,12 +22,12 @@ public class userController {
 
     
     @PostMapping("/create")
-    public String userCreate(@RequestBody userEntity user) {
+    public ResponseEntity<?> userCreate(@RequestBody userEntity user) {
         return userUseCase.userCreate(user);
     }
 
     @PostMapping("/login")
-    public ResponseEntity<String> login(@RequestBody loginDTO request) {
+    public ResponseEntity<?> login(@RequestBody loginDTO request) {
         return userUseCase.userLogin(request);
     }
 }
