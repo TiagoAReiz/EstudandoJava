@@ -2,7 +2,7 @@ import { UserServiceService } from './../../services/user-service.service';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { NgIf } from '@angular/common';
 @Component({
   selector: 'app-user-form',
@@ -11,7 +11,7 @@ import { NgIf } from '@angular/common';
   styleUrl: './user-form.component.css'
 })
 export class UserFormComponent {
-  constructor(private userService: UserServiceService, ) {}
+  constructor(private userService: UserServiceService,private router: Router ) {}
   user = {
     email: '',
     password: ''
@@ -22,8 +22,7 @@ export class UserFormComponent {
     this.userService.cadastrar(this.user).subscribe({
       next: (response) => {
         console.log('User registered:', response);
-        this.createError = null;
-        // Handle successful registration, e.g., redirect to login page
+        this.router.navigate(['/login']);
       },
       error: (error) => {
         console.error('Registration failed:', error);
