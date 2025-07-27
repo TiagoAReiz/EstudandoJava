@@ -2,6 +2,7 @@ package group.Reiz.Project.Infra.Db;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import java.util.Optional;
 
 import group.Reiz.Project.Adapters.IdatabaseService;
 
@@ -25,6 +26,10 @@ public class databaseService implements IdatabaseService {
     @Override
     public List<userEntity> getAllUsers() {
         return userManager.findAll();
+    }
+    @Override
+    public Optional<userEntity> getUserById(Long id) {
+        return userManager.findById(id);
     }
 
 }

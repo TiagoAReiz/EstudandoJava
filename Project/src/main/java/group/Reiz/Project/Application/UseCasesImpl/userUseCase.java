@@ -5,6 +5,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 
 import group.Reiz.Project.Adapters.*;
 import group.Reiz.Project.Adapters.DTOs.createUserDTO;
@@ -62,5 +64,17 @@ public class userUseCase implements IuserUseCase {
     public List<userEntity> getAllUsers() {
         return databaseService.getAllUsers();
     }
+    @Override
+    public ResponseEntity<?> beseller(Long userId) {
+        Optional<userEntity> userDB = databaseService.getUserById(userId);
+        userEntity user = userDB.get();
+        if (user == null) {
+            return ResponseEntity.status(404).body(Map.of("error", "User not found"));
+        }
+        user.setRole(Role.SELLER);
+        databaseService.saveUser(user);
+        return ResponseEntity.ok(Map.of("message", "User promoted to seller successfully"));
+    }
+
 
 }

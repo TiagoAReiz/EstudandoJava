@@ -13,6 +13,7 @@ import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.beans.factory.annotation.Value;
+import jakarta.servlet.http.HttpServletRequest;
 
 @Service
 public class tokenService implements ItokenService {
@@ -56,7 +57,10 @@ public class tokenService implements ItokenService {
                 .parseClaimsJws(token)
                 .getBody();
     }
-
+    @Override
+    public Long getIdFromToken(String token) {
+        return extractClaims(token).get("id", Long.class);
+    }
     @Override
     public String getEmailFromToken(String token) {
         return extractClaims(token).getSubject();
@@ -65,5 +69,14 @@ public class tokenService implements ItokenService {
     @Override
     public String getRoleFromToken(String token) {
         return extractClaims(token).get("role", String.class);
+
+    }
+    @Override
+    public String getToken(HttpServletRequest request) {
+        String token = request.getHeader("Authorization");
+        if (token != null && token.startsWith("Bearer ")) {
+            return token.substring(7); // remove "Bearer "
+        }
+        return null;
     }
 }
