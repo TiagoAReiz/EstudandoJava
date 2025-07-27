@@ -21,6 +21,9 @@ main{
     padding: 100px 50px;
         
 }
+h1{
+    margin-bottom: 20px;
+}
 form input{
     display: block;
     outline: none;
@@ -60,4 +63,12 @@ form a{
 }
 form a:hover {
     color: rgb(204, 204, 204);
+}
+.error-message {
+  color: #D8000C; /* Vermelho */
+  background-color: #FFD2D2;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 15px;
+  text-align: center;
 }

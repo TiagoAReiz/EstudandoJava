@@ -2,7 +2,7 @@
   <div class="user-container">
     <div class="container-cadastro">
       <h1>Cadastrar-se</h1>
-
+      <p *ngIf="createError" class="error-message">{{ createError }}</p>
       <div class="form-cadastro">
         <form (ngSubmit)="cadastrar()" >
 

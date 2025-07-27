@@ -3,6 +3,7 @@
 <div class="container-login">
       <h1>Seja um vendedor</h1>
         <p>Para se tornar um vendedor, preencha os campos abaixo:</p>
+        <p *ngIf="patchError" class="error-message">{{ patchError }}</p>
       <div class="form-login">
         <form
         (ngSubmit)="beSeller(cnpj)">

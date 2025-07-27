@@ -16,11 +16,13 @@ main{
     box-shadow: 0px 0px 90px rgba(255, 255, 255, 0.219);
     border-radius: 30px;
 }
-
 .container-cadastro{
     width: 400px;
     padding: 100px 50px;
-    
+        
+}
+h1{
+    margin-bottom: 20px;
 }
 form input{
     display: block;
@@ -61,4 +63,12 @@ form a{
 }
 form a:hover {
     color: rgb(204, 204, 204);
+}
+.error-message {
+  color: #D8000C; /* Vermelho */
+  background-color: #FFD2D2;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 15px;
+  text-align: center;
 }

@@ -2,7 +2,7 @@
   <div class="user-container">
 <div class="container-login">
       <h1>Login</h1>
-
+      <p *ngIf="loginError" class="error-message">{{ loginError }}</p>
       <div class="form-login">
         <form
         (ngSubmit)="login(credentials)">
