@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import group.Reiz.Project.Adapters.IdatabaseService;
 
 import group.Reiz.Project.Core.Entities.userEntity;
+import java.util.List;
 
 @Service
 public class databaseService implements IdatabaseService {
@@ -20,6 +21,10 @@ public class databaseService implements IdatabaseService {
     @Override
     public userEntity getUserByEmail(String email) {
         return userManager.findByEmail(email);
+    }
+    @Override
+    public List<userEntity> getAllUsers() {
+        return userManager.findAll();
     }
 
 }

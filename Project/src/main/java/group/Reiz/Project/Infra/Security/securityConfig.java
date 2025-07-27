@@ -10,9 +10,9 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-import org.springframework.stereotype.Service;
 
-@Service
+
+
 @Configuration
 @EnableWebSecurity
 public class securityConfig {
@@ -38,6 +38,7 @@ public class securityConfig {
                 .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class)
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/user/login", "/user/create").permitAll()
+                        .requestMatchers("/user/admin").hasRole("ADMIN")
                         .anyRequest().authenticated())
                 .build();
     }

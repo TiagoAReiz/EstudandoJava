@@ -4,11 +4,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 import group.Reiz.Project.Adapters.*;
 import group.Reiz.Project.Adapters.DTOs.loginDTO;
 import group.Reiz.Project.Application.UseCasesImpl.Verificadores.userVerify;
 import group.Reiz.Project.Core.Entities.userEntity;
 import group.Reiz.Project.Core.Usecases.IuserUseCase;
+import group.Reiz.Project.Core.Enums.Role;
 
 
 @Service
@@ -35,7 +38,8 @@ public class userUseCase implements IuserUseCase {
             return ResponseEntity.badRequest().body(java.util.Map.of("error", "Email already registered"));
         }
         user.setPassword(passwordEncoder.encodePassword(user.getPassword()));
-        user.setRole("USER"); 
+        user.setRole(Role.USER);
+
         
         databaseService.saveUser(user);
         return ResponseEntity.ok(java.util.Map.of("message", "User created successfully"));
@@ -45,12 +49,14 @@ public class userUseCase implements IuserUseCase {
     public ResponseEntity<?> userLogin(loginDTO user) {
         userEntity userDB = databaseService.getUserByEmail(user.getEmail());
         if (userDB != null && passwordEncoder.checkPassword(user.getPassword(), userDB.getPassword())) {
-            Long id = userDB.getId();
-            String token = tokenService.generateToken(id, userDB.getEmail());
-            // Retorne um JSON com o token
+            String token = tokenService.generateToken(userDB);
             return ResponseEntity.ok(java.util.Map.of("token", token));
         }
         return ResponseEntity.status(401).body(java.util.Map.of("error", "Invalid credentials"));
+    }
+    @Override
+    public List<userEntity> getAllUsers() {
+        return databaseService.getAllUsers();
     }
 
 }
