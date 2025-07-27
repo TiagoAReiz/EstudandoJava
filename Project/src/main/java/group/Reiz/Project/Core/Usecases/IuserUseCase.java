@@ -5,12 +5,12 @@ import java.util.List;
 
 import org.springframework.http.ResponseEntity;
 
-import group.Reiz.Project.Adapters.DTOs.loginDTO;
+import group.Reiz.Project.Adapters.DTOs.*;
 
 import group.Reiz.Project.Core.Entities.userEntity;
 
 public interface IuserUseCase {
-    public ResponseEntity<?> userCreate(userEntity user);
+    public ResponseEntity<?> userCreate(createUserDTO user);
     public ResponseEntity<?> userLogin(loginDTO user);
     public List<userEntity> getAllUsers();
 }

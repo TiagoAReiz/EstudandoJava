@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 import group.Reiz.Project.Adapters.*;
+import group.Reiz.Project.Adapters.DTOs.createUserDTO;
 import group.Reiz.Project.Adapters.DTOs.loginDTO;
 import group.Reiz.Project.Application.UseCasesImpl.Verificadores.userVerify;
 import group.Reiz.Project.Core.Entities.userEntity;
@@ -26,7 +27,7 @@ public class userUseCase implements IuserUseCase {
     private userVerify userVerify;
     
     @Override
-    public ResponseEntity<?> userCreate(userEntity user)
+    public ResponseEntity<?> userCreate(createUserDTO user)
     {
         if (!userVerify.isValidEmail(user.getEmail())) {
             return ResponseEntity.badRequest().body(java.util.Map.of("error", "Invalid email format"));
@@ -40,8 +41,11 @@ public class userUseCase implements IuserUseCase {
         user.setPassword(passwordEncoder.encodePassword(user.getPassword()));
         user.setRole(Role.USER);
 
-        
-        databaseService.saveUser(user);
+        userEntity userSave = new userEntity();
+        userSave.setEmail(user.getEmail());
+        userSave.setPassword(user.getPassword());
+        userSave.setRole(Role.USER);
+        databaseService.saveUser(userSave);
         return ResponseEntity.ok(java.util.Map.of("message", "User created successfully"));
     }
 
