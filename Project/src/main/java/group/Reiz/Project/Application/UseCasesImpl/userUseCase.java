@@ -39,7 +39,7 @@ public class userUseCase implements IuserUseCase {
             return ResponseEntity.badRequest().body(java.util.Map.of("error", "Email already registered"));
         }
         user.setPassword(passwordEncoder.encodePassword(user.getPassword()));
-        user.setRole(Role.USER);
+       
 
         userEntity userSave = new userEntity();
         userSave.setEmail(user.getEmail());

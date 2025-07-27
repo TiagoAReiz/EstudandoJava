@@ -3,6 +3,7 @@ package group.Reiz.Project.Controllers;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import group.Reiz.Project.Adapters.DTOs.createUserDTO;
 import group.Reiz.Project.Adapters.DTOs.loginDTO;
 import group.Reiz.Project.Core.Entities.userEntity;
 import group.Reiz.Project.Core.Enums.Role;
@@ -27,7 +28,7 @@ public class userController {
 
     
     @PostMapping("/create")
-    public ResponseEntity<?> userCreate(@RequestBody userEntity user) {
+    public ResponseEntity<?> userCreate(@RequestBody createUserDTO user) {
         return userUseCase.userCreate(user);
     }
 

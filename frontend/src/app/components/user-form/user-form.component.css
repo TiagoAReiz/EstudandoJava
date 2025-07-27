@@ -51,3 +51,14 @@ form button:active{
     background-color: #26336e;
     transition: background-color 0.1s ease-in-out;
 }
+form a{
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    margin-top: 20px;
+    display: block;
+    transition: 0.3s ease-in-out;
+}
+form a:hover {
+    color: rgb(204, 204, 204);
+}

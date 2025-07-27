@@ -2,9 +2,10 @@ import { UserServiceService } from './../../services/user-service.service';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { RouterLink } from '@angular/router';
 @Component({
   selector: 'app-user-form',
-  imports: [FormsModule, HttpClientModule],
+  imports: [FormsModule, HttpClientModule, RouterLink],
   templateUrl: './user-form.component.html',
   styleUrl: './user-form.component.css'
 })

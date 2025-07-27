@@ -1,4 +1,4 @@
-version: '3.8'
+version: '3.9'
 
 services:
   mysql:
@@ -21,8 +21,8 @@ services:
 
   app-java:
     build:
-      context: .
-      dockerfile: DockerFile
+      context: ./Project
+      dockerfile: ../DockerFile  # Caminho relativo ao context
     container_name: app_java
     depends_on:
       mysql:
@@ -33,6 +33,19 @@ services:
       SPRING_DATASOURCE_PASSWORD: appsecret
     ports:
       - "8080:8080"
+
+  app-frontend:
+    build:
+      context: ./frontend
+      dockerfile: ../DockerFile.dev
+    container_name: app_frontend
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    ports:
+      - "4200:4200"
+    depends_on:
+      - app-java
 
 volumes:
   db_data:
