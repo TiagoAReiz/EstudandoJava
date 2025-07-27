@@ -5,14 +5,15 @@ import org.springframework.stereotype.Service;
 import java.util.Optional;
 
 import group.Reiz.Project.Adapters.IdatabaseService;
-
-import group.Reiz.Project.Core.Entities.userEntity;
+import group.Reiz.Project.Core.Entities.*;
 import java.util.List;
 
 @Service
 public class databaseService implements IdatabaseService {
     @Autowired
-    private jpaService userManager;
+    private userRepository userManager;
+    @Autowired
+    private sellerRepository sellerManager;
 
     @Override
     public userEntity saveUser(userEntity user) {
@@ -30,6 +31,15 @@ public class databaseService implements IdatabaseService {
     @Override
     public Optional<userEntity> getUserById(Long id) {
         return userManager.findById(id);
+
+    }
+    @Override
+    public sellerEntity saveSeller(sellerEntity seller) {
+        return sellerManager.save(seller);
+    }
+    @Override
+    public List<sellerEntity> getAllSellers() {
+        return sellerManager.findAll();
     }
 
 }

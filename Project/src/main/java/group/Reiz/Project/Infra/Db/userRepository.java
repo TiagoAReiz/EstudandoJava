@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import group.Reiz.Project.Core.Entities.userEntity;
 
 @Service
-public interface jpaService extends JpaRepository<userEntity, Long> {
+public interface userRepository extends JpaRepository<userEntity, Long> {
 
     public userEntity findByEmail(String email);
     public List<userEntity> findAll();

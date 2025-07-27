@@ -11,7 +11,9 @@ import java.util.Optional;
 import group.Reiz.Project.Adapters.*;
 import group.Reiz.Project.Adapters.DTOs.createUserDTO;
 import group.Reiz.Project.Adapters.DTOs.loginDTO;
+import group.Reiz.Project.Adapters.DTOs.sellerDTO;
 import group.Reiz.Project.Application.UseCasesImpl.Verificadores.userVerify;
+import group.Reiz.Project.Core.Entities.sellerEntity;
 import group.Reiz.Project.Core.Entities.userEntity;
 import group.Reiz.Project.Core.Usecases.IuserUseCase;
 import group.Reiz.Project.Core.Enums.Role;
@@ -65,14 +67,21 @@ public class userUseCase implements IuserUseCase {
         return databaseService.getAllUsers();
     }
     @Override
-    public ResponseEntity<?> beseller(Long userId) {
-        Optional<userEntity> userDB = databaseService.getUserById(userId);
-        userEntity user = userDB.get();
+    public Optional<userEntity> getUserById(Long id) {
+        return databaseService.getUserById(id);
+    }
+    @Override
+    public ResponseEntity<?> beseller(userEntity user, sellerDTO seller) {
         if (user == null) {
             return ResponseEntity.status(404).body(Map.of("error", "User not found"));
         }
         user.setRole(Role.SELLER);
         databaseService.saveUser(user);
+        sellerEntity sellerEntity = new sellerEntity();
+        sellerEntity.setUser(user);
+        sellerEntity.setCnpj(seller.getCnpj());
+
+        databaseService.saveSeller(sellerEntity);
         return ResponseEntity.ok(Map.of("message", "User promoted to seller successfully"));
     }
 

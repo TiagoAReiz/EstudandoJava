@@ -20,7 +20,9 @@ constructor(private userService: UserServiceService) {}
     this.userService.login(credentials).subscribe({
       next: (response) => {
         console.log('Login successful:', response);
-        // Handle successful login, e.g., redirect to home page
+
+        localStorage.setItem('authToken', response.token);
+
       },
       error: (error) => {
         console.error('Login failed:', error);

@@ -16,4 +16,9 @@ export class UserServiceService {
   login(credentials: any): Observable<any> {
     return this.http.post('http://localhost:8080/user/login', credentials);
   }
+
+
+  beSeller(cnpj: string): Observable<any> {
+    return this.http.patch(`http://localhost:8080/user/beseller`, { cnpj });
+  }
 }

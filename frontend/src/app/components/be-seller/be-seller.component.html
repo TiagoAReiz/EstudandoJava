@@ -1,0 +1,17 @@
+<main>
+  <div class="user-container">
+<div class="container-login">
+      <h1>Seja um vendedor</h1>
+        <p>Para se tornar um vendedor, preencha os campos abaixo:</p>
+      <div class="form-login">
+        <form
+        (ngSubmit)="beSeller(cnpj)">
+          <input [(ngModel)]="cnpj"
+           type="text" id="cnpj" name="cnpj" required placeholder="CNPJ"/>
+          <a routerLink="/sign">Não tem uma conta? Cadastre-se</a>
+          <button type="submit">Enviar</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</main>
