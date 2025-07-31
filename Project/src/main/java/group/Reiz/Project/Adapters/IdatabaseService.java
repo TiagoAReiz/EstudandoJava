@@ -18,4 +18,7 @@ public interface IdatabaseService {
     public Optional<userEntity> getUserById(Long id);
     public sellerEntity saveSeller(sellerEntity seller);
     public List<sellerEntity> getAllSellers();
+    public sellerEntity getSellerByUserID(Long userId);
+    public List<productEntity> getAllProducts();
+    public productEntity saveProduct(productEntity product);
  }

@@ -14,6 +14,8 @@ public class databaseService implements IdatabaseService {
     private userRepository userManager;
     @Autowired
     private sellerRepository sellerManager;
+    @Autowired
+    private productRepository productManager;
 
     @Override
     public userEntity saveUser(userEntity user) {
@@ -40,6 +42,18 @@ public class databaseService implements IdatabaseService {
     @Override
     public List<sellerEntity> getAllSellers() {
         return sellerManager.findAll();
+    }
+    @Override
+    public sellerEntity getSellerByUserID(Long userId) {
+        return sellerManager.getSellerByUserID(userId);
+    }
+    @Override
+    public productEntity saveProduct(productEntity product) {
+        return productManager.save(product);
+    }
+    @Override
+    public List<productEntity> getAllProducts() {
+        return productManager.findAll();
     }
 
 }

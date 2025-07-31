@@ -1,7 +1,6 @@
 package group.Reiz.Project.Application.UseCasesImpl.Verificadores;
 
 
-import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
 
 @Service

@@ -84,6 +84,10 @@ public class userUseCase implements IuserUseCase {
         databaseService.saveSeller(sellerEntity);
         return ResponseEntity.ok(Map.of("message", "User promoted to seller successfully"));
     }
+    @Override
+    public sellerEntity getSellerByUserId(Long userId) {
+        return databaseService.getSellerByUserID(userId);
+    }
 
 
 }

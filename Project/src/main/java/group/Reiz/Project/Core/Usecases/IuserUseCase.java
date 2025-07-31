@@ -9,7 +9,7 @@ import org.springframework.http.ResponseEntity;
 import group.Reiz.Project.Adapters.DTOs.*;
 
 import group.Reiz.Project.Core.Entities.*;
-import group.Reiz.Project.Adapters.DTOs.*;
+
 
 
 public interface IuserUseCase {
@@ -18,4 +18,5 @@ public interface IuserUseCase {
     public List<userEntity> getAllUsers();
     public Optional<userEntity> getUserById(Long id);
     public ResponseEntity<?> beseller(userEntity user, sellerDTO seller);
+    public sellerEntity getSellerByUserId(Long userId);
 }

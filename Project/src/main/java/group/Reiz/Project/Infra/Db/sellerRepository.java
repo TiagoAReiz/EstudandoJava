@@ -11,6 +11,6 @@ import group.Reiz.Project.Core.Entities.sellerEntity;
 public interface sellerRepository extends JpaRepository<sellerEntity, Long> {
 
    public List<sellerEntity> findAll();
-
+   public sellerEntity getSellerByUserID(Long userId);
 }
 

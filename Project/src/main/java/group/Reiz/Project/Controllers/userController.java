@@ -8,12 +8,11 @@ import group.Reiz.Project.Adapters.DTOs.sellerDTO;
 import group.Reiz.Project.Adapters.DTOs.createUserDTO;
 import group.Reiz.Project.Adapters.DTOs.loginDTO;
 import group.Reiz.Project.Core.Entities.*;
-import group.Reiz.Project.Core.Enums.Role;
 import group.Reiz.Project.Core.Usecases.IuserUseCase;
 import group.Reiz.Project.Adapters.ItokenService;
 
 import java.util.List;
-import java.util.Map;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -23,7 +22,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import jakarta.servlet.http.HttpServletRequest;
 
 
-import org.springframework.web.bind.annotation.RequestHeader;
 
 import org.springframework.web.bind.annotation.PatchMapping;
 

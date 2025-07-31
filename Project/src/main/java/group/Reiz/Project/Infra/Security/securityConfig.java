@@ -40,6 +40,7 @@ public class securityConfig {
                         .requestMatchers("/user/login", "/user/create").permitAll()
                         .requestMatchers("/user/admin").hasRole("ADMIN")
                         .requestMatchers("/user/beseller").hasAnyRole("USER", "ADMIN")
+                        .requestMatchers("/product/create").hasAnyRole("SELLER", "ADMIN")
                         .anyRequest().authenticated())
                 .build();
     }
