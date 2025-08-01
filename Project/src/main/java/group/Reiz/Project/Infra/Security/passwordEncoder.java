@@ -3,7 +3,7 @@ package group.Reiz.Project.Infra.Security;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Service;
 
-import group.Reiz.Project.Adapters.IpasswordEncoder;
+import group.Reiz.Project.Adapters.Security.IpasswordEncoder;
 
 
 @Service

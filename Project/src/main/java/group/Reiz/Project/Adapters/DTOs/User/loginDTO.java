@@ -1,14 +1,17 @@
-package group.Reiz.Project.Adapters.DTOs;
+package group.Reiz.Project.Adapters.DTOs.User;
 
 import lombok.AllArgsConstructor;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.AllArgsConstructor;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class sellerDTO {
-    private String cnpj;
+
+public class loginDTO {
+    private String email;
+    private String password;
+
+
 }

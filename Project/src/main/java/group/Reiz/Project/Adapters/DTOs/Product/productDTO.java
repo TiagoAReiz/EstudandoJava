@@ -1,4 +1,4 @@
-package group.Reiz.Project.Adapters.DTOs;
+package group.Reiz.Project.Adapters.DTOs.Product;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

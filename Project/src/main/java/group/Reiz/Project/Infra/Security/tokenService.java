@@ -5,7 +5,7 @@ import java.util.Date;
 
 import org.springframework.stereotype.Service;
 
-import group.Reiz.Project.Adapters.ItokenService;
+import group.Reiz.Project.Adapters.Security.ItokenService;
 import group.Reiz.Project.Core.Entities.userEntity;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.ExpiredJwtException;

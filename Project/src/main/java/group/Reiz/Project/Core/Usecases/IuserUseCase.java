@@ -6,8 +6,10 @@ import java.util.Optional;
 
 import org.springframework.http.ResponseEntity;
 
-import group.Reiz.Project.Adapters.DTOs.*;
 
+import group.Reiz.Project.Adapters.DTOs.Seller.sellerDTO;
+import group.Reiz.Project.Adapters.DTOs.User.createUserDTO;
+import group.Reiz.Project.Adapters.DTOs.User.loginDTO;
 import group.Reiz.Project.Core.Entities.*;
 
 

@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.Optional;
 
-import group.Reiz.Project.Adapters.IdatabaseService;
+import group.Reiz.Project.Adapters.DB.IdatabaseService;
 import group.Reiz.Project.Core.Entities.*;
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package group.Reiz.Project.Adapters;
+package group.Reiz.Project.Adapters.DB;
 
 import java.util.List;
 import java.util.Optional;

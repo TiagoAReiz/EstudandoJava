@@ -3,8 +3,8 @@ package group.Reiz.Project.Controllers;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import group.Reiz.Project.Adapters.ItokenService;
-import group.Reiz.Project.Adapters.DTOs.productDTO;
+import group.Reiz.Project.Adapters.DTOs.Product.productDTO;
+import group.Reiz.Project.Adapters.Security.ItokenService;
 
 import java.util.List;
 

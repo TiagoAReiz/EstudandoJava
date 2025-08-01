@@ -3,13 +3,12 @@ package group.Reiz.Project.Controllers;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-
-import group.Reiz.Project.Adapters.DTOs.sellerDTO;
-import group.Reiz.Project.Adapters.DTOs.createUserDTO;
-import group.Reiz.Project.Adapters.DTOs.loginDTO;
+import group.Reiz.Project.Adapters.DTOs.User.createUserDTO;
+import group.Reiz.Project.Adapters.DTOs.User.loginDTO;
+import group.Reiz.Project.Adapters.Security.ItokenService;
+import group.Reiz.Project.Adapters.DTOs.Seller.sellerDTO;
 import group.Reiz.Project.Core.Entities.*;
 import group.Reiz.Project.Core.Usecases.IuserUseCase;
-import group.Reiz.Project.Adapters.ItokenService;
 
 import java.util.List;
 

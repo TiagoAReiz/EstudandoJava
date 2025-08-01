@@ -1,4 +1,4 @@
-package group.Reiz.Project.Application.UseCasesImpl.Verificadores;
+package group.Reiz.Project.Application.UseCasesImpl.Verificadores.User;
 
 
 import org.springframework.stereotype.Service;

@@ -1,4 +1,4 @@
-package group.Reiz.Project.Adapters;
+package group.Reiz.Project.Adapters.Security;
 
 import org.springframework.stereotype.Service;
 
