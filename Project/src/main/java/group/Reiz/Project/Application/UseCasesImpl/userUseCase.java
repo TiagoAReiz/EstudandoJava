@@ -14,7 +14,7 @@ import group.Reiz.Project.Adapters.DTOs.User.createUserDTO;
 import group.Reiz.Project.Adapters.DTOs.User.loginDTO;
 import group.Reiz.Project.Adapters.Security.IpasswordEncoder;
 import group.Reiz.Project.Adapters.Security.ItokenService;
-import group.Reiz.Project.Application.UseCasesImpl.Verificadores.User.userVerify;
+import group.Reiz.Project.Application.Verificadores.User.userVerify;
 import group.Reiz.Project.Core.Entities.sellerEntity;
 import group.Reiz.Project.Core.Entities.userEntity;
 import group.Reiz.Project.Core.Usecases.IuserUseCase;
@@ -88,7 +88,7 @@ public class userUseCase implements IuserUseCase {
     }
     @Override
     public sellerEntity getSellerByUserId(Long userId) {
-        return databaseService.getSellerByUserID(userId);
+        return databaseService.getSellerByUserId(userId);
     }
 
 

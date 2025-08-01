@@ -44,8 +44,8 @@ public class databaseService implements IdatabaseService {
         return sellerManager.findAll();
     }
     @Override
-    public sellerEntity getSellerByUserID(Long userId) {
-        return sellerManager.getSellerByUserID(userId);
+    public sellerEntity getSellerByUserId(Long userId) {
+        return sellerManager.getSellerByUserId(userId);
     }
     @Override
     public productEntity saveProduct(productEntity product) {

@@ -1,4 +1,4 @@
-package group.Reiz.Project.Application.UseCasesImpl.Verificadores.Seller;
+package group.Reiz.Project.Application.Verificadores.Seller;
 
 public class sellerVerify {
     

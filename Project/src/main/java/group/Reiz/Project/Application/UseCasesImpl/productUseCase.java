@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
 
 import group.Reiz.Project.Adapters.DB.IdatabaseService;
 import group.Reiz.Project.Adapters.DTOs.Product.productDTO;
@@ -11,7 +12,7 @@ import group.Reiz.Project.Core.Entities.productEntity;
 import group.Reiz.Project.Core.Entities.sellerEntity;
 import group.Reiz.Project.Core.Usecases.IproductUseCase;
 
-
+@Service
 public class productUseCase implements IproductUseCase {
    @Autowired
     private IdatabaseService databaseService;
@@ -25,15 +26,26 @@ public class productUseCase implements IproductUseCase {
         newProduct.setCategory(product.getCategory());
         newProduct.setStock(product.getStock());
         newProduct.setImageUrl(product.getImageUrl());
-
+        databaseService.saveProduct(newProduct);
 
         return ResponseEntity.ok(java.util.Map.of("message", "Product created successfully"));
     }
-
-    public List<productEntity> getAllProducts() {
-        return databaseService.getAllProducts();
+    @Override
+    public List<productDTO> getAllProducts() {
+        List<productEntity> products = databaseService.getAllProducts();
+        return products.stream().map(this::convertToDTO).toList();
     }
-    
+
+    private productDTO convertToDTO(productEntity product) {
+        productDTO dto = new productDTO();
+        dto.setName(product.getName());
+        dto.setDescription(product.getDescription());
+        dto.setPrice(product.getPrice());
+        dto.setCategory(product.getCategory());
+        dto.setStock(product.getStock());
+        dto.setImageUrl(product.getImageUrl());
+        return dto;
+    }
 
     }
 

@@ -5,7 +5,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.ManyToOne;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -26,7 +26,7 @@ public class productEntity {
     private int stock;
     private String imageUrl;
 
-    @OneToMany
+    @ManyToOne
     @JoinColumn(name = "seller_id", referencedColumnName = "id")
     private sellerEntity seller; 
 }
