@@ -6,13 +6,19 @@ import org.springframework.web.bind.annotation.RestController;
 import group.Reiz.Project.Adapters.ItokenService;
 import group.Reiz.Project.Adapters.DTOs.productDTO;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import group.Reiz.Project.Application.UseCasesImpl.productUseCase;
+import group.Reiz.Project.Core.Entities.productEntity;
 import group.Reiz.Project.Core.Usecases.IuserUseCase;
 import jakarta.servlet.http.HttpServletRequest;
+import org.springframework.web.bind.annotation.GetMapping;
+
+
 
 
 @RestController
@@ -29,5 +35,10 @@ public class productController {
     public ResponseEntity<?> createProduct(HttpServletRequest request, @RequestBody productDTO product) {
         return productUseCase.createProduct(product, userUseCase.getSellerByUserId(tokenService.getIdFromToken(tokenService.getToken(request))));
     }
+    @GetMapping("/all")
+    public List<productEntity> getAllProducts() {
+        return productUseCase.getAllProducts();
+    }
+    
     
 }
