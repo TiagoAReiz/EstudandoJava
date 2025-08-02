@@ -1,20 +1,33 @@
-import { Component, ElementRef, AfterViewInit, OnDestroy } from '@angular/core';
+import { ProductsService } from '../../services/products.service';
+import { Component, ElementRef, AfterViewInit, OnDestroy, OnInit } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
+import { Observable } from 'rxjs/internal/Observable';
+export interface Product {
+  id: number;
+  name: string;
+  description: string;
+  price: number;
+  imageUrl: string;
+}
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, HttpClientModule],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent implements AfterViewInit, OnDestroy {
+export class HomeComponent implements AfterViewInit, OnDestroy,OnInit {
   private mutationObserver!: MutationObserver;
   private intersectionObserver!: IntersectionObserver;
   private observedElements = new Set<Element>();
 
-  constructor(private el: ElementRef) {}
 
+  constructor(private el: ElementRef, private productsService : ProductsService) {}
+  ngOnInit(): void {
+    this.getProducts();
+  }
   ngAfterViewInit(): void {
     if (typeof window === 'undefined') return;
 
@@ -57,5 +70,19 @@ export class HomeComponent implements AfterViewInit, OnDestroy {
     this.mutationObserver?.disconnect();
     this.intersectionObserver?.disconnect();
     this.observedElements.clear();
+    
   }
+    products: Product[] = [];
+  getProducts ()  {
+    this.productsService.getProducts().subscribe({
+      next: (data) => {
+        this.products = data || [];
+        console.log('Products loaded:', this.products);
+      },
+      error: (error) => {
+        console.error('Error loading products:', error);
+        this.products = [];
+      }
+  })
+}
 }
