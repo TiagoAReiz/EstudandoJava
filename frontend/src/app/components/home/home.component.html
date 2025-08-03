@@ -3,9 +3,16 @@
         <div class="product-list">
           @for (product of products; track product.id) {
             <div class="product-item">
-              <h3>{{ product.name }}</h3>
-              <p>{{ product.description }}</p>
-              <p>Price: {{ product.price | currency }}</p>
+              <div>
+                <div class="product-image">
+                <img src="https://cdn.pixabay.com/photo/2016/11/21/06/53/beautiful-natural-image-1844362_1280.jpg" alt="" class="product-img">
+              </div>
+              
+              <div class="product-text">
+              <p class="product-name">{{ product.name }}</p>
+              <p class="product-price">{{ product.price | currency }}</p>
+              </div>
+              </div>
             </div>
           }
         </div>
